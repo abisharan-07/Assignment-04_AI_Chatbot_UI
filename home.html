@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>AI Chatbot | Chat</title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <!-- Header -->
+ <header>
+ <div class="container">
+ <div class="header-content">
+ <div class="logo">
+ <i class="fas fa-robot"></i>
+ <span>AI Assistant</span>
+ </div>
+ <div class="header-actions">
+ <button class="theme-toggle" id="themeToggle">
+ <i class="fas fa-moon"></i>
+ </button>
+ <div class="auth-buttons">
+ <button class="btn btn-outline" id="loginBtn">Login</button>
+ <button class="btn btn-primary" id="signupBtn">Sign Up</button>
+ </div>
+ </div>
+ </div>
+ </div>
+ </header>
+
+ <!-- Login Modal -->
+ <div class="modal" id="loginModal">
+ <div class="modal-content">
+ <div class="modal-header">
+ <h2>Login to your account</h2>
+ <button class="close-modal">&times;</button>
+ </div>
+ <div class="modal-tabs">
+ <button class="modal-tab active" data-tab="login">Login</button>
+ <button class="modal-tab" data-tab="signup">Sign Up</button>
+ </div>
+ <div class="modal-body">
+ <div class="tab-content active" id="login-tab">
+ <form id="loginForm">
+ <div class="form-group">
+ <label for="loginEmail">Email</label>
+ <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
+ </div>
+ <div class="form-group">
+ <label for="loginPassword">Password</label>
+ <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+ </div>
+ <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+ <div class="form-footer">
+ <p><a href="#" id="forgotPasswordLink">Forgot your password?</a></p>
+ </div>
+ </form>
+ </div>
+ <div class="tab-content" id="signup-tab">
+ <form id="signupForm">
+ <div class="form-group">
+ <label for="signupName">Full Name</label>
+ <input type="text" id="signupName" class="form-control" placeholder="Enter your full name" required>
+ </div>
+ <div class="form-group">
+ <label for="signupEmail">Email</label>
+ <input type="email" id="signupEmail" class="form-control" placeholder="Enter your email" required>
+ </div>
+ <div class="form-group">
+ <label for="signupPassword">Password</label>
+ <input type="password" id="signupPassword" class="form-control" placeholder="Create a password" required>
+ </div>
+ <div class="form-group">
+ <label for="signupConfirmPassword">Confirm Password</label>
+ <input type="password" id="signupConfirmPassword" class="form-control" placeholder="Confirm your password" required>
+ </div>
+ <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+ </form>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Forgot Password Modal -->
+ <div class="modal" id="forgotPasswordModal">
+ <div class="modal-content">
+ <div class="modal-header">
+ <h2>Reset Password</h2>
+ <button class="close-modal">&times;</button>
+ </div>
+ <div class="modal-body">
+ <form id="forgotPasswordForm">
+ <div class="form-group">
+ <label for="forgotEmail">Email</label>
+ <input type="email" id="forgotEmail" class="form-control" placeholder="Enter your email" required>
+ </div>
+ <button type="submit" class="btn btn-primary" style="width: 100%;">Send Reset Link</button>
+ <div class="form-footer">
+ <p>Remember your password? <a href="#" id="backToLoginLink">Back to login</a></p>
+ </div>
+ </form>
+ </div>
+ </div>
+ </div>
+
+ <!-- Main Chat Area -->
+ <div class="container">
+ <div class="chat-container">
+ <!-- Sidebar -->
+ <div class="sidebar">
+ <div class="sidebar-header">
+ <h2>Chat History</h2>
+ <button class="new-chat-btn" id="newChatBtn">
+ <i class="fas fa-plus"></i>
+ New Chat
+ </button>
+ </div>
+ <div class="sidebar-content">
+ <ul class="chat-history">
+ <li class="chat-history-item active">
+ <h4>Website Development Ideas</h4>
+ <p>Last message: Let me suggest some modern design trends...</p>
+ </li>
+ <li class="chat-history-item">
+ <h4>Python Code Help</h4>
+ <p>Last message: Here's how you can optimize that function...</p>
+ </li>
+ <li class="chat-history-item">
+ <h4>Travel Recommendations</h4>
+ <p>Last message: Based on your preferences, I suggest...</p>
+ </li>
+ <li class="chat-history-item">
+ <h4>Learning Plan</h4>
+ <p>Last message: Your 30-day learning roadmap for AI...</p>
+ </li>
+ <li class="chat-history-item">
+ <h4>Recipe Ideas</h4>
+ <p>Last message: Here are 5 vegetarian recipes for dinner...</p>
+ </li>
+ </ul>
+ </div>
+ <div class="sidebar-footer">
+ <ul class="sidebar-nav">
+ <li>
+ <a href="#" id="settingsBtn">
+ <i class="fas fa-cog"></i>
+ <span>Settings</span>
+ </a>
+ </li>
+ <li>
+ <a href="#">
+ <i class="fas fa-history"></i>
+ <span>Chat History</span>
+ </a>
+ </li>
+ <li>
+ <a href="#">
+ <i class="fas fa-question-circle"></i>
+ <span>Help & FAQ</span>
+ </a>
+ </li>
+ <li>
+ <a href="#">
+ <i class="fas fa-sign-out-alt"></i>
+ <span>Logout</span>
+ </a>
+ </li>
+ </ul>
+ </div>
+ </div>
+
+ <!-- Chat Area -->
+ <div class="chat-area">
+ <div class="chat-header">
+ <div class="chat-info">
+ <h3>Website Development Ideas</h3>
+ <p>Created: Today, 10:30 AM</p>
+ </div>
+ <div class="chat-actions">
+ <button class="chat-action-btn" title="Clear Chat">
+ <i class="fas fa-trash"></i>
+ </button>
+ <button class="chat-action-btn" title="Share Chat">
+ <i class="fas fa-share"></i>
+ </button>
+ <button class="chat-action-btn" title="Export Chat">
+ <i class="fas fa-download"></i>
+ </button>
+ </div>
+ </div>
+ <div class="messages-container" id="messagesContainer">
+ <div class="message ai-message">
+ <div class="message-content">
+ Hello! I'm your AI assistant. How can I help you with website development today?
+ </div>
+ <div class="message-time">10:30 AM</div>
+ </div>
+ <div class="message user-message">
+ <div class="message-content">
+ I need some ideas for a modern business website.
+ </div>
+ <div class="message-time">10:32 AM</div>
+ </div>
+ <div class="message ai-message">
+ <div class="message-content">
+ Great! For a modern business website, I'd recommend focusing on clean design, fast loading times, and mobile responsiveness. Some key trends include:<br><br>
+ 1. Dark mode with light mode toggle<br>
+ 2. Micro-interactions and subtle animations<br>
+ 3. Glass morphism effects<br>
+ 4. Asymmetric layouts with bold typography<br>
+ 5. Integrated chatbots for customer support<br><br>
+ Would you like me to elaborate on any of these ideas?
+ </div>
+ <div class="message-time">10:33 AM</div>
+ </div>
+ <div class="message user-message">
+ <div class="message-content">
+ Can you show me an example of glass morphism in CSS?
+ </div>
+ <div class="message-time">10:34 AM</div>
+ </div>
+ <div class="message ai-message">
+ <div class="message-content">
+ Certainly! Here's a simple CSS example for glass morphism:<br><br>
+ <code>
+ .glass-effect {<br>
+ &nbsp;&nbsp;background: rgba(255, 255, 255, 0.2);<br>
+ &nbsp;&nbsp;backdrop-filter: blur(10px);<br>
+ &nbsp;&nbsp;border-radius: 10px;<br>
+ &nbsp;&nbsp;border: 1px solid rgba(255, 255, 255, 0.3);<br>
+ &nbsp;&nbsp;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);<br>
+ }
+ </code>
+ <br><br>
+ This creates a translucent frosted glass effect that's popular in modern UI design.
+ </div>
+ <div class="message-time">10:35 AM</div>
+ </div>
+ <div class="message-typing" id="typingIndicator">
+ <span>AI is typing</span>
+ <div class="typing-dots">
+ <div class="typing-dot"></div>
+ <div class="typing-dot"></div>
+ <div class="typing-dot"></div>
+ </div>
+ </div>
+ </div>
+ <div class="input-area">
+ <textarea class="message-input" id="messageInput" placeholder="Type your message here..." rows="1"></textarea>
+ <button class="send-btn" id="sendBtn">
+ <i class="fas fa-paper-plane"></i>
+ </button>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Settings Modal -->
+ <div class="modal" id="settingsModal">
+ <div class="modal-content">
+ <div class="modal-header">
+ <h2>Chat Settings</h2>
+ <button class="close-modal">&times;</button>
+ </div>
+ <div class="modal-body">
+ <div class="settings-option">
+ <h3>AI Model</h3>
+ <p>Choose which AI model to use for conversations</p>
+ <select class="select-control" id="aiModel">
+ <option value="standard">Standard (Balanced)</option>
+ <option value="creative">Creative (More imaginative)</option>
+ <option value="precise">Precise (More factual)</option>
+ </select>
+ </div>
+ <div class="settings-option">
+ <h3>Response Length</h3>
+ <p>Control how detailed the AI responses should be</p>
+ <select class="select-control" id="responseLength">
+ <option value="short">Short</option>
+ <option value="medium" selected>Medium</option>
+ <option value="long">Long</option>
+ </select>
+ </div>
+ <div class="settings-option">
+ <h3>Chat Features</h3>
+ <p>Enable or disable specific chat functionalities</p>
+ <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+ <div style="display: flex; justify-content: space-between; align-items: center;">
+ <span>Voice Responses</span>
+ <label class="toggle-switch">
+ <input type="checkbox" checked>
+ <span class="toggle-slider"></span>
+ </label>
+ </div>
+ <div style="display: flex; justify-content: space-between; align-items: center;">
+ <span>Code Syntax Highlighting</span>
+ <label class="toggle-switch">
+ <input type="checkbox" checked>
+ <span class="toggle-slider"></span>
+ </label>
+ </div>
+ <div style="display: flex; justify-content: space-between; align-items: center;">
+ <span>Auto-save Conversations</span>
+ <label class="toggle-switch">
+ <input type="checkbox">
+ <span class="toggle-slider"></span>
+ </label>
+ </div>
+ </div>
+ </div>
+ <div class="settings-option">
+ <h3>Privacy</h3>
+ <p>Manage your data and privacy settings</p>
+ <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+ <div style="display: flex; justify-content: space-between; align-items: center;">
+ <span>Save Chat History</span>
+ <label class="toggle-switch">
+ <input type="checkbox" checked>
+ <span class="toggle-slider"></span>
+ </label>
+ </div>
+ <div style="display: flex; justify-content: space-between; align-items: center;">
+ <span>Allow Training on My Data</span>
+ <label class="toggle-switch">
+ <input type="checkbox">
+ <span class="toggle-slider"></span>
+ </label>
+ </div>
+ </div>
+ </div>
+ <button class="new-chat-btn" style="width: 100%; margin-top: 20px;">Save Settings</button>
+ </div>
+ </div>
+ </div>
+ <script src="home_script.js"></script>
+ <script src="script.js"></script>
+</body>
+</html>
