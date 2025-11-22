@@ -1,160 +1,125 @@
-// DOM Elements
-const loginBtn = document.getElementById('login-btn');
-const signupBtn = document.getElementById('signup-btn');
-const loginModal = document.getElementById('login-modal');
-const signupModal = document.getElementById('signup-modal');
-const closeModalBtns = document.querySelectorAll('.close-modal');
-const switchModalBtns = document.querySelectorAll('.switch-modal');
-const chatInterface = document.getElementById('chat-interface');
-const dashboard = document.getElementById('dashboard');
-const chatLink = document.getElementById('chat-link');
-const dashboardLink = document.getElementById('dashboard-link');
-const heroChatBtn = document.getElementById('hero-chat-btn');
-const newChatBtn = document.getElementById('new-chat-btn');
-const sendBtn = document.getElementById('send-btn');
-const messageInput = document.getElementById('message-input');
-const chatMessages = document.getElementById('chat-messages');
-const loginSubmit = document.getElementById('login-submit');
-const signupSubmit = document.getElementById('signup-submit');
+// Theme Toggle
+ const themeToggle = document.getElementById('themeToggle');
+ const themeIcon = themeToggle.querySelector('i');
+ 
+ themeToggle.addEventListener('click', () => {
+ document.body.classList.toggle('dark-mode');
+ if (document.body.classList.contains('dark-mode')) {
+ themeIcon.classList.remove('fa-moon');
+ themeIcon.classList.add('fa-sun');
+ } else {
+ themeIcon.classList.remove('fa-sun');
+ themeIcon.classList.add('fa-moon');
+ }
+ });
 
-// Show Login Modal
-loginBtn.addEventListener('click', () => {
-    loginModal.style.display = 'flex';
-});
+ // Modal Functionality
+ const loginBtn = document.getElementById('loginBtn');
+ const signupBtn = document.getElementById('signupBtn');
+ const loginModal = document.getElementById('loginModal');
+ const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+ const closeModalButtons = document.querySelectorAll('.close-modal');
+ const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+ const backToLoginLink = document.getElementById('backToLoginLink');
+ const modalTabs = document.querySelectorAll('.modal-tab');
+ const startChatBtn = document.getElementById('startChatBtn');
 
-// Show Signup Modal
-signupBtn.addEventListener('click', () => {
-    signupModal.style.display = 'flex';
-});
+ // Open Login Modal
+ loginBtn.addEventListener('click', () => {
+ loginModal.style.display = 'flex';
+ document.body.style.overflow = 'hidden';
+ });
 
-// Close Modals
-closeModalBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        loginModal.style.display = 'none';
-        signupModal.style.display = 'none';
-    });
-});
+ // Open Signup Modal (via signup button)
+ signupBtn.addEventListener('click', () => {
+ loginModal.style.display = 'flex';
+ document.body.style.overflow = 'hidden';
+ // Switch to signup tab
+ switchTab('signup');
+ });
 
-// Switch between Login and Signup modals
-switchModalBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const targetModal = btn.getAttribute('data-target');
-        loginModal.style.display = 'none';
-        signupModal.style.display = 'none';
-        document.getElementById(targetModal).style.display = 'flex';
-    });
-});
+ // Start Chat Button
+ startChatBtn.addEventListener('click', () => {
+ window.location.href = 'home.html';
+ });
 
-// Close modal when clicking outside
-window.addEventListener('click', (e) => {
-    if (e.target === loginModal) {
-        loginModal.style.display = 'none';
-    }
-    if (e.target === signupModal) {
-        signupModal.style.display = 'none';
-    }
-});
+ // Close Modal
+ closeModalButtons.forEach(button => {
+ button.addEventListener('click', () => {
+ loginModal.style.display = 'none';
+ forgotPasswordModal.style.display = 'none';
+ document.body.style.overflow = 'auto';
+ });
+ });
 
-// Show Chat Interface
-chatLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    chatInterface.style.display = 'block';
-    dashboard.style.display = 'none';
-    window.scrollTo({ top: chatInterface.offsetTop - 100, behavior: 'smooth' });
-});
+ // Close modal when clicking outside
+ window.addEventListener('click', (e) => {
+ if (e.target === loginModal) {
+ loginModal.style.display = 'none';
+ document.body.style.overflow = 'auto';
+ }
+ if (e.target === forgotPasswordModal) {
+ forgotPasswordModal.style.display = 'none';
+ document.body.style.overflow = 'auto';
+ }
+ });
 
-// Show Dashboard
-dashboardLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    dashboard.style.display = 'block';
-    chatInterface.style.display = 'none';
-    window.scrollTo({ top: dashboard.offsetTop - 100, behavior: 'smooth' });
-});
+ // Forgot Password Link
+ forgotPasswordLink.addEventListener('click', (e) => {
+ e.preventDefault();
+ loginModal.style.display = 'none';
+ forgotPasswordModal.style.display = 'flex';
+ });
 
-// Hero Chat Button
-heroChatBtn.addEventListener('click', () => {
-    chatInterface.style.display = 'block';
-    dashboard.style.display = 'none';
-    window.scrollTo({ top: chatInterface.offsetTop - 100, behavior: 'smooth' });
-});
+ // Back to Login Link
+ backToLoginLink.addEventListener('click', (e) => {
+ e.preventDefault();
+ forgotPasswordModal.style.display = 'none';
+ loginModal.style.display = 'flex';
+ });
 
-// New Chat Button
-newChatBtn.addEventListener('click', () => {
-    chatInterface.style.display = 'block';
-    dashboard.style.display = 'none';
-    window.scrollTo({ top: chatInterface.offsetTop - 100, behavior: 'smooth' });
-});
+ // Modal Tabs
+ modalTabs.forEach(tab => {
+ tab.addEventListener('click', () => {
+ const tabName = tab.getAttribute('data-tab');
+ switchTab(tabName);
+ });
+ });
 
-// Send Message
-sendBtn.addEventListener('click', sendMessage);
-messageInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        sendMessage();
-    }
-});
+ function switchTab(tabName) {
+ // Update active tab
+ modalTabs.forEach(tab => {
+ tab.classList.remove('active');
+ if (tab.getAttribute('data-tab') === tabName) {
+ tab.classList.add('active');
+ }
+ });
 
-function sendMessage() {
-    const message = messageInput.value.trim();
-    if (message) {
-        // Add user message
-        const userMessage = document.createElement('div');
-        userMessage.classList.add('message', 'user-message');
-        userMessage.textContent = message;
-        chatMessages.appendChild(userMessage);
+ // Update active tab content
+ document.querySelectorAll('.tab-content').forEach(content => {
+ content.classList.remove('active');
+ });
+ document.getElementById(`${tabName}-tab`).classList.add('active');
+ }
 
-        // Clear input
-        messageInput.value = '';
+ // Form Submissions
+ document.getElementById('loginForm').addEventListener('submit', (e) => {
+ e.preventDefault();
+ alert('Login functionality would be implemented here');
+ loginModal.style.display = 'none';
+ document.body.style.overflow = 'auto';
+ });
 
-        // Scroll to bottom
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+ document.getElementById('signupForm').addEventListener('submit', (e) => {
+ e.preventDefault();
+ alert('Signup functionality would be implemented here');
+ loginModal.style.display = 'none';
+ document.body.style.overflow = 'auto';
+ });
 
-        // Simulate AI response after a short delay
-        setTimeout(() => {
-            const aiMessage = document.createElement('div');
-            aiMessage.classList.add('message', 'ai-message');
-            aiMessage.textContent = getAIResponse(message);
-            chatMessages.appendChild(aiMessage);
-
-            // Scroll to bottom
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 1000);
-    }
-}
-
-// Simple AI response simulation
-function getAIResponse(message) {
-    const responses = [
-        "I understand you're asking about: " + message + ". Can you provide more details?",
-        "That's an interesting question! Based on my knowledge, I'd recommend exploring this further.",
-        "I can help with that. Let me provide some information that might be useful.",
-        "Thanks for your question. Here's what I think about that topic.",
-        "I've processed your request and here's my response based on the available information."
-    ];
-    return responses[Math.floor(Math.random() * responses.length)];
-}
-
-// Form submissions
-loginSubmit.addEventListener('click', () => {
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
-
-    if (email && password) {
-        alert('Login successful!');
-        loginModal.style.display = 'none';
-    } else {
-        alert('Please fill in all fields');
-    }
-});
-
-signupSubmit.addEventListener('click', () => {
-    const name = document.getElementById('signup-name').value;
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
-
-    if (name && email && password) {
-        alert('Account created successfully!');
-        signupModal.style.display = 'none';
-    } else {
-        alert('Please fill in all fields');
-    }
-});
+ document.getElementById('forgotPasswordForm').addEventListener('submit', (e) => {
+ e.preventDefault();
+ alert('Password reset email would be sent here');
+ forgotPasswordModal.style.display = 'none';
+ document.body.style.overflow = 'auto';
+ });
