@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant | Smart Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Assistant</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="active">Home</a>
+                    <a href="#" id="dashboard-link">Dashboard</a>
+                    <a href="#" id="chat-link">Chat</a>
+                    <a href="#">Features</a>
+                    <a href="#">Pricing</a>
+                </div>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline" id="login-btn">Login</button>
+                    <button class="btn btn-primary" id="signup-btn">Sign Up</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Your Intelligent AI Assistant</h1>
+            <p>Experience the future of conversation with our advanced AI chatbot. Get instant answers, creative ideas,
+                and helpful assistance for any task.</p>
+            <button class="btn btn-primary" id="hero-chat-btn">Start Chatting Now</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Powerful Features</h2>
+                <p>Discover how our AI assistant can transform your workflow and boost productivity</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Advanced AI</h3>
+                    <p>Powered by state-of-the-art language models for intelligent and contextual conversations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Get instant responses with our optimized AI engine that processes requests in milliseconds.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>Your conversations are encrypted and we never store personal data without permission.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Interface -->
+    <section class="container">
+        <div class="chat-container" id="chat-interface">
+            <div class="chat-header">
+                <i class="fas fa-robot"></i>
+                <h2>AI Assistant</h2>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message ai-message">
+                    Hello! I'm your AI assistant. How can I help you today?
+                </div>
+                <div class="message user-message">
+                    Hi! Can you help me with some creative writing ideas?
+                </div>
+                <div class="message ai-message">
+                    Absolutely! I'd be happy to help with creative writing. Are you looking for fiction, poetry, or
+                    something else?
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="Type your message here...">
+                <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="dashboard container" id="dashboard">
+        <div class="dashboard-header">
+            <h2>Your Dashboard</h2>
+            <button class="btn btn-primary" id="new-chat-btn">New Chat</button>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card stat-1">
+                <div class="stat-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>127</h3>
+                    <p>Total Chats</p>
+                </div>
+            </div>
+            <div class="stat-card stat-2">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>18h 42m</h3>
+                    <p>Time Saved</p>
+                </div>
+            </div>
+            <div class="stat-card stat-3">
+                <div class="stat-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>89</h3>
+                    <p>Ideas Generated</p>
+                </div>
+            </div>
+        </div>
+        <div class="recent-chats">
+            <h3>Recent Chats</h3>
+            <ul class="chat-list">
+                <li class="chat-item">
+                    <div class="chat-preview">
+                        <div class="chat-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="chat-info">
+                            <h4>Creative Writing Ideas</h4>
+                            <p>Can you help me with some creative writing ideas?</p>
+                        </div>
+                    </div>
+                    <div class="chat-time">2 hours ago</div>
+                </li>
+                <li class="chat-item">
+                    <div class="chat-preview">
+                        <div class="chat-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="chat-info">
+                            <h4>JavaScript Code Review</h4>
+                            <p>I need help optimizing this function...</p>
+                        </div>
+                    </div>
+                    <div class="chat-time">Yesterday</div>
+                </li>
+                <li class="chat-item">
+                    <div class="chat-preview">
+                        <div class="chat-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="chat-info">
+                            <h4>Travel Recommendations</h4>
+                            <p>Best places to visit in Europe during spring</p>
+                        </div>
+                    </div>
+                    <div class="chat-time">3 days ago</div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AI Assistant</h3>
+                    <p>Your intelligent companion for work, creativity, and everyday tasks.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Product</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Use Cases</a></li>
+                        <li><a href="#">Integrations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 AI Assistant. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login to Your Account</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" class="form-control" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" class="form-control" placeholder="Enter your password">
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary" id="login-submit">Login</button>
+                    <p>Don't have an account? <button class="switch-modal" data-target="signup-modal">Sign Up</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signup-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create an Account</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" class="form-control" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" class="form-control" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" class="form-control" placeholder="Create a password">
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary" id="signup-submit">Sign Up</button>
+                    <p>Already have an account? <button class="switch-modal" data-target="login-modal">Login</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
