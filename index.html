@@ -3,36 +3,34 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>AI Chatbot | About</title>
+ <title>NeuraChat | Chat</title>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="light-mode">
  <!-- Header -->
- <header>
+ <header class="header">
  <div class="container">
- <div class="header-content">
  <div class="logo">
- <i class="fas fa-robot"></i>
- <span>AI Assistant</span>
+<i class="fas fa-robot"></i>
+ <h1>NeuraChat</h1>
  </div>
- <div class="header-actions">
- <button class="theme-toggle" id="themeToggle">
- <i class="fas fa-moon"></i>
- </button>
- <div class="auth-buttons">
- <button class="btn btn-outline" id="loginBtn">Login</button>
- <button class="btn btn-primary" id="signupBtn">Sign Up</button>
- </div>
- </div>
+ <nav class="nav">
+ <ul>
+ <li><a href="#" id="login-btn">Login</a></li>
+ <li><a href="#" id="signup-btn">Sign Up</a></li>
+ </ul>
+ </nav>
+ <div class="theme-toggle">
+ <button id="theme-toggle-btn"> </button>
  </div>
  </div>
  </header>
 
- <!-- Hero Section -->
+  <!-- Hero Section -->
  <section class="hero">
  <div class="container">
- <h1>Your Intelligent AI Assistant</h1>
+ <h1>Your Intelligent NeuraChat</h1>
  <p>Experience the future of conversational AI with our advanced chatbot that understands context, provides accurate responses, and adapts to your needs.</p>
  <div class="hero-buttons">
  <button class="btn btn-light" id="startChatBtn">Start Chatting</button>
@@ -100,28 +98,26 @@
  <div class="footer-column">
  <h3>Quick Links</h3>
  <ul>
- <li><a href="ran.html">Home</a></li>
- <li><a href="ra.html">Chat</a></li>
- <li><a href="#">Features</a></li>
- <li><a href="#">Pricing</a></li>
+ <li><a href="#">About</a></li>
+ <li><a href="home.html">Chat</a></li>
  </ul>
  </div>
  <div class="footer-column">
  <h3>Support</h3>
  <ul>
- <li><a href="#">Help Center</a></li>
- <li><a href="#">Contact Us</a></li>
- <li><a href="#">Privacy Policy</a></li>
- <li><a href="#">Terms of Service</a></li>
+ <li><a href="">Help Center</a></li>
+ <li><a href="">Contact Us</a></li>
+ <li><a href="">Privacy Policy</a></li>
+ <li><a href="">Terms of Service</a></li>
  </ul>
  </div>
  <div class="footer-column">
  <h3>Connect With Us</h3>
  <ul>
- <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
- <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
- <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
- <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+ <li><a href=""><i class="fab fa-twitter"></i> Twitter</a></li>
+ <li><a href=""><i class="fab fa-facebook"></i> Facebook</a></li>
+ <li><a href=""><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+ <li><a href=""><i class="fab fa-github"></i> GitHub</a></li>
  </ul>
  </div>
  </div>
@@ -130,79 +126,68 @@
  </div>
  </div>
  </footer>
-
  <!-- Login Modal -->
- <div class="modal" id="loginModal">
+ <div id="login-modal" class="modal">
  <div class="modal-content">
- <div class="modal-header">
- <h2>Login to your account</h2>
- <button class="close-modal">&times;</button>
- </div>
- <div class="modal-tabs">
- <button class="modal-tab active" data-tab="login">Login</button>
- <button class="modal-tab" data-tab="signup">Sign Up</button>
- </div>
- <div class="modal-body">
- <div class="tab-content active" id="login-tab">
- <form id="loginForm">
+ <span class="close">&times;</span>
+ <h2>Login to Your Account</h2>
+ <form id="login-form">
  <div class="form-group">
- <label for="loginEmail">Email</label>
- <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
+ <label for="login-email">Email</label>
+ <input type="email" id="login-email" required>
  </div>
  <div class="form-group">
- <label for="loginPassword">Password</label>
- <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+ <label for="login-password">Password</label>
+ <input type="password" id="login-password" required>
  </div>
- <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+ <button type="submit" class="btn-primary">Login</button>
  <div class="form-footer">
- <p><a href="#" id="forgotPasswordLink">Forgot your password?</a></p>
+ <a href="#" id="forgot-password-link">Forgot Password?</a>
  </div>
  </form>
  </div>
- <div class="tab-content" id="signup-tab">
- <form id="signupForm">
+ </div>
+
+ <!-- Signup Modal -->
+ <div id="signup-modal" class="modal">
+ <div class="modal-content">
+ <span class="close">&times;</span>
+ <h2>Create an Account</h2>
+ <form id="signup-form">
  <div class="form-group">
- <label for="signupName">Full Name</label>
- <input type="text" id="signupName" class="form-control" placeholder="Enter your full name" required>
+ <label for="signup-name">Full Name</label>
+ <input type="text" id="signup-name" required>
  </div>
  <div class="form-group">
- <label for="signupEmail">Email</label>
- <input type="email" id="signupEmail" class="form-control" placeholder="Enter your email" required>
+ <label for="signup-email">Email</label>
+ <input type="email" id="signup-email" required>
  </div>
  <div class="form-group">
- <label for="signupPassword">Password</label>
- <input type="password" id="signupPassword" class="form-control" placeholder="Create a password" required>
+ <label for="signup-password">Password</label>
+ <input type="password" id="signup-password" required>
  </div>
  <div class="form-group">
- <label for="signupConfirmPassword">Confirm Password</label>
- <input type="password" id="signupConfirmPassword" class="form-control" placeholder="Confirm your password" required>
+ <label for="signup-confirm">Confirm Password</label>
+ <input type="password" id="signup-confirm" required>
  </div>
- <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+ <button type="submit" class="btn-primary">Sign Up</button>
  </form>
- </div>
- </div>
  </div>
  </div>
 
  <!-- Forgot Password Modal -->
- <div class="modal" id="forgotPasswordModal">
+ <div id="forgot-password-modal" class="modal">
  <div class="modal-content">
- <div class="modal-header">
- <h2>Reset Password</h2>
- <button class="close-modal">&times;</button>
- </div>
- <div class="modal-body">
- <form id="forgotPasswordForm">
+ <span class="close">&times;</span>
+ <h2>Reset Your Password</h2>
+ <form id="forgot-password-form">
  <div class="form-group">
- <label for="forgotEmail">Email</label>
- <input type="email" id="forgotEmail" class="form-control" placeholder="Enter your email" required>
+ <label for="forgot-email">Email</label>
+ <input type="email" id="forgot-email" required>
  </div>
- <button type="submit" class="btn btn-primary" style="width: 100%;">Send Reset Link</button>
- <div class="form-footer">
- <p>Remember your password? <a href="#" id="backToLoginLink">Back to login</a></p>
- </div>
+ <p class="info-text">We'll send you a link to reset your password.</p>
+ <button type="submit" class="btn-primary">Send Reset Link</button>
  </form>
- </div>
  </div>
  </div>
 
