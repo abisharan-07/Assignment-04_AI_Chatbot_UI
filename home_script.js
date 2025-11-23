@@ -159,3 +159,36 @@
  document.querySelector('.chat-info h3').textContent = chatTitle;
  });
  });
+
+
+function updateCreatedTime() {
+const createdTimeElement = document.getElementById("createdTime");
+
+const now = new Date();
+const timeString = now.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+createdTimeElement.textContent = `Created: Today, ${timeString}`;
+}
+updateCreatedTime(); // run on page load
+
+newChatBtn.addEventListener('click', () => {
+// Remove all messages EXCEPT typing indicator
+const allMessages = messagesContainer.querySelectorAll('.message');
+allMessages.forEach(msg => msg.remove());
+
+// Ensure typing indicator stays at the bottom
+ messagesContainer.appendChild(typingIndicator);
+
+// Add default welcome message
+addMessage("Hello! How can I help you?", 'ai');
+
+// Update created time
+updateCreatedTime();
+});
+
+
+
+
+ 
