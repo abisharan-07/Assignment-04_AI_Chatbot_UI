@@ -550,7 +550,6 @@
  .new-chat-btn:hover {
  background-color: var(--primary-dark);
  }
-
  .sidebar-content {
  flex: 1;
  overflow-y: auto;
@@ -979,3 +978,5 @@
  max-width: 90%;
  }
  }
+ 
+ 
