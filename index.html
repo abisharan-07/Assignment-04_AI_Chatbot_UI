@@ -3,34 +3,36 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>NeuraChat | Chat</title>
+ <title>AI Chatbot | About</title>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
- <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="light-mode">
+<body>
  <!-- Header -->
- <header class="header">
+ <header>
  <div class="container">
+ <div class="header-content">
  <div class="logo">
-<i class="fas fa-robot"></i>
- <h1>NeuraChat</h1>
+ <i class="fas fa-robot"></i>
+ <span>AI Assistant</span>
  </div>
- <nav class="nav">
- <ul>
- <li><a href="#" id="login-btn">Login</a></li>
- <li><a href="#" id="signup-btn">Sign Up</a></li>
- </ul>
- </nav>
- <div class="theme-toggle">
- <button id="theme-toggle-btn"> </button>
+ <div class="header-actions">
+ <button class="theme-toggle" id="themeToggle">
+ <i class="fas fa-moon"></i>
+ </button>
+ <div class="auth-buttons">
+ <button class="btn btn-outline" id="loginBtn">Login</button>
+ <button class="btn btn-primary" id="signupBtn">Sign Up</button>
+ </div>
+ </div>
  </div>
  </div>
  </header>
 
-  <!-- Hero Section -->
+ <!-- Hero Section -->
  <section class="hero">
  <div class="container">
- <h1>Your Intelligent NeuraChat</h1>
+ <h1>Your Intelligent AI Assistant</h1>
  <p>Experience the future of conversational AI with our advanced chatbot that understands context, provides accurate responses, and adapts to your needs.</p>
  <div class="hero-buttons">
  <button class="btn btn-light" id="startChatBtn">Start Chatting</button>
@@ -126,68 +128,78 @@
  </div>
  </div>
  </footer>
- <!-- Login Modal -->
- <div id="login-modal" class="modal">
- <div class="modal-content">
- <span class="close">&times;</span>
- <h2>Login to Your Account</h2>
- <form id="login-form">
- <div class="form-group">
- <label for="login-email">Email</label>
- <input type="email" id="login-email" required>
- </div>
- <div class="form-group">
- <label for="login-password">Password</label>
- <input type="password" id="login-password" required>
- </div>
- <button type="submit" class="btn-primary">Login</button>
- <div class="form-footer">
- <a href="#" id="forgot-password-link">Forgot Password?</a>
- </div>
- </form>
- </div>
- </div>
 
- <!-- Signup Modal -->
- <div id="signup-modal" class="modal">
+ <!-- Login Modal -->
+ <div class="modal" id="loginModal">
  <div class="modal-content">
- <span class="close">&times;</span>
- <h2>Create an Account</h2>
- <form id="signup-form">
+ <div class="modal-header">
+ <button class="closee-modal">&times;</button>
+ </div>
+ <div class="modal-tabs">
+ <button class="modal-tab active" data-tab="login">Login</button>
+ <button class="modal-tab" data-tab="signup">Sign Up</button>
+ </div>
+ <div class="modal-body">
+ <div class="tab-content active" id="login-tab">
+ <form id="loginForm">
  <div class="form-group">
- <label for="signup-name">Full Name</label>
- <input type="text" id="signup-name" required>
+ <label for="loginEmail">Email</label>
+ <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
  </div>
  <div class="form-group">
- <label for="signup-email">Email</label>
- <input type="email" id="signup-email" required>
+ <label for="loginPassword">Password</label>
+ <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
  </div>
- <div class="form-group">
- <label for="signup-password">Password</label>
- <input type="password" id="signup-password" required>
+ <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+ <div class="form-footer">
+ <p><a href="#" id="forgotPasswordLink">Forgot your password?</a></p>
  </div>
- <div class="form-group">
- <label for="signup-confirm">Confirm Password</label>
- <input type="password" id="signup-confirm" required>
- </div>
- <button type="submit" class="btn-primary">Sign Up</button>
  </form>
+ </div>
+ <div class="tab-content" id="signup-tab">
+ <form id="signupForm">
+ <div class="form-group">
+ <label for="signupName">Full Name</label>
+ <input type="text" id="signupName" class="form-control" placeholder="Enter your full name" required>
+ </div>
+ <div class="form-group">
+ <label for="signupEmail">Email</label>
+ <input type="email" id="signupEmail" class="form-control" placeholder="Enter your email" required>
+ </div>
+ <div class="form-group">
+ <label for="signupPassword">Password</label>
+ <input type="password" id="signupPassword" class="form-control" placeholder="Create a password" required>
+ </div>
+ <div class="form-group">
+ <label for="signupConfirmPassword">Confirm Password</label>
+ <input type="password" id="signupConfirmPassword" class="form-control" placeholder="Confirm your password" required>
+ </div>
+ <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+ </form>
+ </div>
+ </div>
  </div>
  </div>
 
  <!-- Forgot Password Modal -->
- <div id="forgot-password-modal" class="modal">
+ <div class="modal" id="forgotPasswordModal">
  <div class="modal-content">
- <span class="close">&times;</span>
- <h2>Reset Your Password</h2>
- <form id="forgot-password-form">
- <div class="form-group">
- <label for="forgot-email">Email</label>
- <input type="email" id="forgot-email" required>
+ <div class="modal-header">
+ <h2>Reset Password</h2>
+ <button class="close-modal">&times;</button>
  </div>
- <p class="info-text">We'll send you a link to reset your password.</p>
- <button type="submit" class="btn-primary">Send Reset Link</button>
+ <div class="modal-body">
+ <form id="forgotPasswordForm">
+ <div class="form-group">
+ <label for="forgotEmail">Email</label>
+ <input type="email" id="forgotEmail" class="form-control" placeholder="Enter your email" required>
+ </div>
+ <button type="submit" class="btn btn-primary" style="width: 100%;">Send Reset Link</button>
+ <div class="form-footer">
+ <p>Remember your password? <a href="#" id="backToLoginLink">Back to login</a></p>
+ </div>
  </form>
+ </div>
  </div>
  </div>
 
